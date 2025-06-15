@@ -35,9 +35,9 @@ def compute_implied_vol(price, spot, strike, maturity, rate, dividend_yield=0.0,
     """
     def objective(vol):
         if option_type == 'call':
-            return call_value(spot, strike, maturity, rate, vol, dividend_yield) - price
+            return bsm_call_value(spot, strike, maturity, rate, vol, dividend_yield) - price
         elif option_type == 'put':
-            return put_value(spot, strike, maturity, rate, vol, dividend_yield) - price
+            return bsm_put_value(spot, strike, maturity, rate, vol, dividend_yield) - price
         else:
             raise ValueError("option_type must be 'call' or 'put'.")
 
