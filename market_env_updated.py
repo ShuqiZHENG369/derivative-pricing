@@ -131,7 +131,8 @@ class MarketEnvironment:
         return (self.spot, self.strike, self.maturity, self.rate, self.volatility, self.dividend_yield)
 
     def summary(self):
-        print(f"··········································································\n"
+        print(f"\n"
+              f"··········································································\n"
               f"Market Environment Summary\n"
               f"Ticker: {self.ticker}\n"
               f"Spot: {self.spot}\n"
