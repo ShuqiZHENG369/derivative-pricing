@@ -1,6 +1,5 @@
-# Option Pricing Engine - Analytical Module
-# Core valuation functions for closed-form models
-#
+# Option Pricing: core valuation functions for closed-form models
+
 # Developed by Shuqi ZHENG (c) 2025
 # License: MIT (see LICENSE file for details)
 #
