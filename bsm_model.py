@@ -22,14 +22,14 @@ class BlackScholesModel:
     def d2(self):
         return self.d1() - self.volatility * sqrt(self.maturity)
 
-    def call_price(self):
+    def bsm_call_price(self):
         d1 = self.d1()
         d2 = self.d2()
         call = (exp(-self.dividend_yield * self.maturity) * self.spot * norm.cdf(d1) -
                 exp(-self.rate * self.maturity) * self.strike * norm.cdf(d2))
         return call
 
-    def put_price(self):
+    def bsm_put_price(self):
         d1 = self.d1()
         d2 = self.d2()
         put = (exp(-self.rate * self.maturity) * self.strike * norm.cdf(-d2) -
