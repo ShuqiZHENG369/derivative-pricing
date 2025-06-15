@@ -22,7 +22,7 @@ def run_full_pricing_flow(ticker='AAPL', currency='USD', option_type='call', mar
     dividend_yield = params['dividend_yield']
 
     print("\n⚙️ Pricing Option using BSM Model...")
-    model = BSMModel(spot, strike, maturity, rate, volatility, dividend_yield)
+    model = BlackScholesModel(spot, strike, maturity, rate, volatility, dividend_yield)
     call_price = model.call_price()
     put_price = model.put_price()
     print(f"Call Price: {call_price:.4f}")
