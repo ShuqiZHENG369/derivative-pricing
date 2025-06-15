@@ -19,7 +19,7 @@ class MarketEnvironment:
         self.vol_period = '90d'
 
     def _get_user_defaults(self):
-        print("Please enter each parameter. These will be used as fallback defaults if real market data cannot be retrieved:")
+        print("🌀 Please enter each parameter. These will be used as fallback defaults if real market data cannot be retrieved:")
         self.ticker = input("Enter ticker (default: AAPL): ") or "AAPL"
         self.spot = float(input("Enter spot price (S0, default: 100): ") or 100)
         self.strike = float(input("Enter strike price (K, default: 100): ") or 100)
@@ -65,7 +65,7 @@ class MarketEnvironment:
 
         try:
             expiries = yf_ticker.options
-            print("\nAvailable option expiries:")
+            print("\n✅ Available option expiries:")
             for i, date in enumerate(expiries):
                 print(f"{i}: {date}")
             idx = int(input("Select expiry index: "))
@@ -79,13 +79,13 @@ class MarketEnvironment:
 
         try:
             opt_chain = yf_ticker.option_chain(expiry_str)
-            print("\nAvailable strikes (calls):")
+            print("\n✅ Available strikes (calls):")
             print(opt_chain.calls['strike'].values)
             self.strike = float(input("Enter strike price (K): "))
         except:
             print(f"⚠️ Failed to fetch option chain. Using fallback strike ({self.strike}).")
 
-        use_fred = input(" Try to fetch U.S. Treasury yield from FRED for maturity? (y/n): ").lower() == 'y'
+        use_fred = input("📌 Fetch U.S. Treasury yield from FRED for maturity? (y/n): ").lower() == 'y'
         if use_fred:
             try: 
                 from fredapi import Fred
