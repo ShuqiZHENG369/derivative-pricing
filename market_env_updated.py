@@ -2,6 +2,8 @@
 import yfinance as yf
 import numpy as np
 from datetime import datetime
+
+!pip install fredapi
 from fredapi import Fred
 
 class MarketEnvironment:
