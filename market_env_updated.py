@@ -85,7 +85,7 @@ class MarketEnvironment:
         except:
             print(f"⚠️ Failed to fetch option chain. Using fallback strike ({self.strike}).")
 
-        use_fred = input("🎯 Try to fetch U.S. Treasury yield from FRED for maturity? (y/n): ").lower() == 'y'
+        use_fred = input(" Try to fetch U.S. Treasury yield from FRED for maturity? (y/n): ").lower() == 'y'
         if use_fred:
             try: 
                 from fredapi import Fred
@@ -132,8 +132,7 @@ class MarketEnvironment:
 
     def summary(self):
         print(f"\n"
-              f"··········································································\n"
-              f"Market Environment Summary\n"
+              f"🎯 Market Environment Summary\n"
               f"Ticker: {self.ticker}\n"
               f"Spot: {self.spot}\n"
               f"Strike: {self.strike}\n"
