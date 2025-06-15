@@ -118,7 +118,7 @@ def run_full_visualization(env=None, ticker=None, period=None):
         if not ticker:
             ticker = input("Enter stock ticker (e.g., AAPL): ").strip().upper()
         if not period:
-            period = input("Enter historical period (e.g., 3mo, 6mo, 1y): ").strip().lower()
+            period = input("Enter historical period (e.g., 3mo, 6mo, 1y, 2y, 3y, 5y, 10y, ytd, max): ").strip().lower()
         env = MarketEnvironment()
         env.ticker = ticker
         env.build()
@@ -130,7 +130,7 @@ def run_full_visualization(env=None, ticker=None, period=None):
         else:
             ticker = env.ticker
         if not period:
-            period = input("Enter historical period (e.g., 3mo, 6mo, 1y): ").strip().lower()
+            period = input("Enter historical period (e.g., 3mo, 6mo, 1y, 2y, 3y, 5y, 10y, ytd, max): ").strip().lower()
 
     env.summary()
     plot_historical_volatility(ticker, period)
