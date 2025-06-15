@@ -35,3 +35,8 @@ class BlackScholesModel:
         put = (exp(-self.rate * self.maturity) * self.strike * norm.cdf(-d2) -
                exp(-self.dividend_yield * self.maturity) * self.spot * norm.cdf(-d1))
         return put
+
+    def summary_prices(self):
+        print(f"→ BSM Call Price: {self.bsm_call_price():.4f}")
+        print(f"→ BSM Put Price:  {self.bsm_put_price():.4f}")
+
