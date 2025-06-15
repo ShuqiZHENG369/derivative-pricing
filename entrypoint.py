@@ -1,6 +1,6 @@
 
 # entrypoint.py
-# 自动运行 market_env 获取参数，供 BSMModel, Greeks, IV 调用
+# run market_env to get the parameters to calculate fair_prices using BSM model, greeks, and implied volatility
 
 from market_env import MarketEnvironment
 from bsm_model import BSMModel
