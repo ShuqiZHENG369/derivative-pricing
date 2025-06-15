@@ -143,3 +143,9 @@ class MarketEnvironment:
               f"Rate: {self.rate:.4f}\n"
               f"Volatility: {self.volatility:.4f}\n"
               f"Dividend Yield: {self.dividend_yield:.4f}\n")
+
+if __name__ == "__main__":
+    env = MarketEnvironment()
+    env.build()
+    env.summary()
+
