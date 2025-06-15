@@ -60,25 +60,12 @@ def bsm_rho(strike, maturity, rate, d2, option_type='call'):
 
 
 def compute_greeks(model, option_type):
-    """
-    Compute all Greeks for a given BSM model instance.
-
-    Parameters
-    ----------
-    model : BlackScholesModel
-        An instance of the Black-Scholes-Merton model.
-    option_type : str
-        'call' or 'put'
-
-    Returns
-    -------
-    dict
-        A dictionary of Delta, Gamma, Vega, Theta, Rho.
-    """
     return {
-        'delta': model.bsm_delta(option_type),
-        'gamma': model.bsm_gamma(),
-        'vega': model.bsm_vega(),
-        'theta': model.bsm_theta(option_type),
-        'rho': model.bsm_rho(option_type)
+        'delta': bsm_delta(model.spot, model.strike, model.maturity, model.rate, model.volatility, model.dividend_yield, option_type),
+        'gamma': bsm_gamma(model.spot, model.strike, model.maturity, model.rate, model.volatility, model.dividend_yield),
+        'vega': bsm_vega(model.spot, model.strike, model.maturity, model.rate, model.volatility, model.dividend_yield),
+        'theta': bsm_theta(model.spot, model.strike, model.maturity, model.rate, model.volatility, model.dividend_yield, option_type),
+        'rho': bsm_rho(model.strike, model.maturity, model.rate, bsm_d2(
+            bsm_d1(model.spot, model.strike, model.maturity, model.rate, model.volatility, model.dividend_yield),
+            model.volatility, model.maturity), option_type)
     }
