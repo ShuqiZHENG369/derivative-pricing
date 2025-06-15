@@ -90,7 +90,7 @@ class MarketEnvironment:
 
     def get_risk_free_rate_by_maturity(self, maturity_years):
         try:
-            fred = Fred(api_key="YOUR_API_KEY")
+            fred = Fred(api_key="eccf4a9305a2ae1c3d70dc2c57f61c6f")
             if maturity_years < 0.125:
                 code = 'DGS1MO'
             elif maturity_years < 0.25:
