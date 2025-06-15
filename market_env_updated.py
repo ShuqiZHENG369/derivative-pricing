@@ -88,12 +88,10 @@ class MarketEnvironment:
 
         use_fred = input("🎯 Try to fetch U.S. Treasury yield from FRED for maturity? (y/n): ").lower() == 'y'
         if use_fred:
-            self.rate = self.get_risk_free_rate_by_maturity(self.maturity)
             try: 
                 from fredapi import Fred
                 fred = Fred(api_key="eccf4a9305a2ae1c3d70dc2c57f61c6f")
         
-                # Standard treasury terms (in years) and their FRED codes
                 terms = [
                     (1/12, 'DGS1MO'),
                     (3/12, 'DGS3MO'),
@@ -106,28 +104,26 @@ class MarketEnvironment:
                     (10, 'DGS10')
                 ]
         
-                # Find the two surrounding maturities for interpolation
+                maturity = self.maturity  # 🔁 用实例变量
                 for i in range(len(terms) - 1):
                     t1, code1 = terms[i]
                     t2, code2 = terms[i + 1]
-        
-                    if t1 <= maturity_years <= t2:
+                    if t1 <= maturity <= t2:
                         r1 = fred.get_series_latest_release(code1).iloc[-1] / 100
                         r2 = fred.get_series_latest_release(code2).iloc[-1] / 100
-                        # Linear interpolation between r1 and r2
-                        interpolated = r1 + (r2 - r1) * (maturity_years - t1) / (t2 - t1)
-                        print(f"→ Interpolated UST rate ({code1}-{code2}) for {maturity_years:.2f}Y: {interpolated:.4%}")
-                        return interpolated
+                        interpolated = r1 + (r2 - r1) * (maturity - t1) / (t2 - t1)
+                        print(f"→ Interpolated UST rate ({code1}-{code2}) for {maturity:.2f}Y: {interpolated:.4%}")
+                        self.rate = interpolated
+                        break  # ✅ 找到了就不用继续找
         
-                # If maturity exceeds available range, use the last available rate (e.g. 10Y+)
-                final_code = terms[-1][1]
-                final_rate = fred.get_series_latest_release(final_code).iloc[-1] / 100
-                print(f"→ Using long-term UST rate ({final_code}) for {maturity_years:.2f}Y: {final_rate:.4%}")
-                return final_rate
+                else:
+                    final_code = terms[-1][1]
+                    final_rate = fred.get_series_latest_release(final_code).iloc[-1] / 100
+                    print(f"→ Using long-term UST rate ({final_code}) for {maturity:.2f}Y: {final_rate:.4%}")
+                    self.rate = final_rate
         
             except Exception as e:
                 print(f"⚠️ Failed to fetch or interpolate UST rate. Using fallback ({self.rate:.4%}).")
-                return self.rate
 
 
 
