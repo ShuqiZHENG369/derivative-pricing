@@ -3,7 +3,7 @@
 from .market_env_updated import MarketEnvironment
 from .bsm_model import BlackScholesModel
 from .greeks import compute_greeks
-from .implied_vol import implied_volatility
+from .implied_vol import auto_implied_vol
 
 __all__ = [
     "MarketEnvironment",
