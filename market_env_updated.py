@@ -88,7 +88,7 @@ class MarketEnvironment:
         if use_fred:
             self.rate = self.get_risk_free_rate_by_maturity(self.maturity)
     
-    def get_risk_free_rate_by_maturity(self, maturity_years):
+    def get_risk_free_rate_by_maturity( maturity_years):
         try:
             from fredapi import Fred
             fred = Fred(api_key="eccf4a9305a2ae1c3d70dc2c57f61c6f")
