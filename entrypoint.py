@@ -22,7 +22,7 @@ def main():
         otype = 'call'
 
     # Step 4: 计算价格
-    price = model.call_price() if otype == 'call' else model.put_price()
+    price = model.bsm_call_price() if otype == 'call' else model.bsm_put_price()
     print(f"\n✅ {otype.capitalize()} Option Price: {price:.4f}")
 
     # Step 5: 显示Greeks
