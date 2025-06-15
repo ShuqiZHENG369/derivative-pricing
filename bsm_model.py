@@ -15,7 +15,7 @@ class BlackScholesModel:
         self.dividend_yield = dividend_yield  # q
 
     def d1(self):
-        numerator = log(self.spot / self.strike) +                     (self.rate - self.dividend_yield + 0.5 * self.volatility ** 2) * self.maturity
+        numerator = log(self.spot / self.strike) + (self.rate - self.dividend_yield + 0.5 * self.volatility ** 2) * self.maturity
         denominator = self.volatility * sqrt(self.maturity)
         return numerator / denominator
 
