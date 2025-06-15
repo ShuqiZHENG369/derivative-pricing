@@ -1,6 +1,6 @@
 # greeks.py
 
-def compute_greeks(model, option_type=otype):
+def compute_greeks(model, option_type):
     """
     Compute all Greeks for a given BSM model instance.
 
