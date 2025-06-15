@@ -54,3 +54,16 @@ def bsm_rho(strike, maturity, rate, d2, option_type='call'):
         return -strike * maturity * exp(-rate * maturity) * norm.cdf(-d2)
     else:
         raise ValueError("Invalid option_type: choose 'call' or 'put'")
+        
+def compute_greeks(spot, strike, maturity, rate, volatility, dividend_yield=0.0, option_type='call'):
+    d1 = bsm_d1(spot, strike, maturity, rate, volatility, dividend_yield)
+    d2 = bsm_d2(d1, volatility, maturity)
+
+    return {
+        'delta': bsm_delta(spot, strike, maturity, rate, volatility, dividend_yield, option_type),
+        'gamma': bsm_gamma(spot, strike, maturity, rate, volatility, dividend_yield),
+        'vega': bsm_vega(spot, strike, maturity, rate, volatility, dividend_yield),
+        'theta': bsm_theta(spot, strike, maturity, rate, volatility, dividend_yield, option_type),
+        'rho': bsm_rho(strike, maturity, rate, d2, option_type)
+    }
+
