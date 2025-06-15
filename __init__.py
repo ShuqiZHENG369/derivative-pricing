@@ -9,5 +9,5 @@ __all__ = [
     "MarketEnvironment",
     "BlackScholesModel",
     "compute_greeks",
-    "implied_volatility"
+    "auto_implied_vol"
 ]
