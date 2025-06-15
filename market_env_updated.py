@@ -17,6 +17,9 @@ class MarketEnvironment:
         self.currency = 'USD'
         self.use_custom_vol_period = False
         self.vol_period = '90d'
+        self.call_market_price = None
+        self.put_market_price = None
+
 
     def _get_user_defaults(self):
         print("🌀 Please enter each parameter. These will be used as fallback defaults if real market data cannot be retrieved:")
@@ -84,6 +87,19 @@ class MarketEnvironment:
             self.strike = float(input("Enter strike price (K): "))
         except:
             print(f"⚠️ Failed to fetch option chain. Using fallback strike ({self.strike}).")
+
+        # Fetch market prices of call/put options
+        try:
+            opt_chain = yf_ticker.option_chain(expiry_str)
+            call_row = opt_chain.calls[opt_chain.calls['strike'] == self.strike]
+            put_row = opt_chain.puts[opt_chain.puts['strike'] == self.strike]
+            self.call_market_price = float(call_row['lastPrice'].values[0])
+            self.put_market_price = float(put_row['lastPrice'].values[0])
+            print(f"→ Call market price: {self.call_market_price:.4f}")
+            print(f"→ Put market price:  {self.put_market_price:.4f}")
+        except:
+            print("⚠️ Failed to retrieve market option prices.")
+
 
         use_fred = input("📌 Fetch U.S. Treasury yield from FRED for maturity? (y/n): ").lower() == 'y'
         if use_fred:
