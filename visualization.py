@@ -92,12 +92,20 @@ def plot_implied_vol_smile(env: MarketEnvironment):
         return
 
     ticker_data = yf.Ticker(env.ticker)
-    expiry = ticker_data.options[0]
-    opt_chain = ticker_data.option_chain(expiry)
-    df = opt_chain.calls[['strike', 'bid', 'ask', 'volume']].copy()
+    expiry_dates = ticker_data.options
+    today = pd.Timestamp.today()
+    target_date = today + pd.Timedelta(days=int(env.maturity * 365))
+    closest_expiry = min(expiry_dates, key=lambda x: abs(pd.to_datetime(x) - target_date))
+
+    opt_chain = ticker_data.option_chain(closest_expiry)
+    calls = opt_chain.calls
+
+    df = calls[['strike', 'bid', 'ask', 'volume']].copy()
     df = df[df['volume'] > 0]
     df['mid'] = (df['bid'] + df['ask']) / 2
-    df = df[(df['ask'] - df['bid']) / df['mid'] < 1.0]
+    df = df[(df['ask'] - df['bid']) / df['mid'] < 0.1]  
+    df = df[(df['strike'] >= env.strike * 0.6) & (df['strike'] <= env.strike * 1.4)]
+
     df['iv'] = df.apply(lambda row: implied_volatility(
         row['mid'], env.spot, row['strike'], env.maturity,
         env.rate, env.dividend_yield, call=True
@@ -106,12 +114,15 @@ def plot_implied_vol_smile(env: MarketEnvironment):
 
     plt.figure(figsize=(10, 5))
     plt.plot(df['strike'], df['iv'], marker='o')
-    plt.title("Implied Volatility Smile (Calls, mid-price based)")
+    plt.axvline(env.strike, linestyle='--', color='gray', label="ATM Strike")
+    plt.title(f"Implied Volatility Smile (Call Options near {closest_expiry})")
     plt.xlabel("Strike")
     plt.ylabel("Implied Volatility")
     plt.grid(True)
+    plt.legend()
     plt.tight_layout()
     plt.show()
+
 
 def run_full_visualization(env=None, ticker=None, period=None):
     if env is None:
