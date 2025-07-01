@@ -25,7 +25,7 @@ def plot_historical_volatility(ticker="AAPL", period="6mo"):
     plt.show()
 
 def plot_price_vs_strike(env: MarketEnvironment):
-    strikes = np.linspace(env.spot * 0.8, env.spot * 1.2, 50)
+    strikes = np.linspace(env.spot * 0.6, env.spot * 1.4, 50)
     call_prices = []
     put_prices = []
 
@@ -46,7 +46,7 @@ def plot_price_vs_strike(env: MarketEnvironment):
     plt.show()
 
 def plot_greeks_vs_spot(env: MarketEnvironment):
-    spot_range = np.linspace(env.spot * 0.8, env.spot * 1.2, 100)
+    spot_range = np.linspace(env.spot * 0.6, env.spot * 1.4, 100)
     results = {"delta": [], "gamma": [], "vega": [], "theta": [], "rho": []}
     results_put = {"delta": [], "gamma": [], "vega": [], "theta": [], "rho": []}
 
