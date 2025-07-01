@@ -2,6 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import yfinance as yf
+import pandas as pd
 from scipy.optimize import brentq
 from scipy.stats import norm
 from math import log, sqrt, exp
