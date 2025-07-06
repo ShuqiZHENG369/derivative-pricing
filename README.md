@@ -97,12 +97,12 @@ $$
 
 - Call: 
 $$
-  \Delta_{\text{call}} = e^{-qT} N(d_1)
+  \Delta_{\{call}} = e^{-qT} N(d_1)
 $$
 
 - Put:
 $$
-  \Delta_{\text{put}} = e^{-qT}(N(d_1) - 1)
+  \Delta_{\{put}} = e^{-qT}(N(d_1) - 1)
 $$
 
 **Gamma**
