@@ -12,7 +12,9 @@ class BlackScholesModel:
         self.maturity = maturity              # T in years
         self.rate = rate                      # r
         self.volatility = volatility          # sigma
-        self.dividend_yield = (info.get("dividendYield", 0.0) or 0.0) / 100
+        self.dividend_yield = dividend_yield  # q
+
+
 
     def d1(self):
         numerator = log(self.spot / self.strike) + (self.rate - self.dividend_yield + 0.5 * self.volatility ** 2) * self.maturity
