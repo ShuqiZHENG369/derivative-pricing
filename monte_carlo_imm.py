@@ -36,7 +36,11 @@ def monte_carlo_exposure_paths(model, n_paths=1000, option_type='call'):
 
     V = np.zeros_like(S)
     for t in range(n_steps + 1):
-        V[:, t] = np.maximum(option_value(S[:, t], t), 0)
+        if option_type == 'call':
+            V[:, t] = np.maximum(option_value(S[:, t], t), 0)
+        else:
+            V[:, t] = np.maximum(-option_value(S[:, t], t), 0)
+
     print(S)
     return V, dt
 
