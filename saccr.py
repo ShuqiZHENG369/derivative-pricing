@@ -133,4 +133,12 @@ def run_saccr_analysis(env, model, contract_size=None, collateral=None, use_abs_
         r = results[option_type]
         cva = compute_cva(r["EAD"], discount_factor, recovery_rate, default_prob)
         print(f"💳 CVA for {option_type.capitalize()}: {cva:.2f}")
+        if option_type == "call":
+            bsm_price = model.bsm_call_price()
+        else:
+            bsm_price = model.bsm_put_price()
+        adjusted_price = bsm_price - cva
+        print(f"SACCR-CVA-Adjusted BSM Price for {option_type.capitalize()}: {bsm_price:.2f} → {adjusted_price:.2f}")
+
+        
 
