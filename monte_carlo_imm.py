@@ -7,7 +7,6 @@ def monte_carlo_exposure_paths(model, n_paths=1000, option_type='call'):
     Simulate asset price paths and compute positive exposures max(V(t), 0)
     Automatically uses monthly steps based on maturity
     """
-    # Set steps as number of months
     n_steps = int(np.round(model.maturity * 12))
     dt = model.maturity / n_steps
 
@@ -19,9 +18,8 @@ def monte_carlo_exposure_paths(model, n_paths=1000, option_type='call'):
     # Simulate asset paths
     S = np.zeros((n_paths, n_steps + 1))
     S[:, 0] = S0
-    Z = np.random.standard_normal((n_paths, n_steps))
+    Z = np.random.standard_normal((n_paths, n_steps))  # ✅ Correct: only generate once
     for t in range(1, n_steps + 1):
-        Z = np.random.standard_normal((n_paths, n_steps))
         S[:, t] = S[:, t - 1] * np.exp((r - 0.5 * sigma**2) * dt + sigma * np.sqrt(dt) * Z[:, t - 1])
 
     # Compute option value at each step using BSM and extract positive exposure
@@ -49,7 +47,7 @@ def compute_exposure_metrics(V, dt, quantile=0.95):
     EPE = EE.mean()
     discount_factors = np.exp(-np.arange(0, V.shape[1]) * dt)
     EEPE = np.sum(EE * discount_factors) / V.shape[1]
-    PFE = np.percentile(V, quantile * 100, axis=0)
+    PFE = np.percentile(V, quantile * 100, axis=0)  # ✅ Correct
     return EE, EPE, EEPE, PFE
 
 def plot_exposure_metrics(EE, PFE, dt):
