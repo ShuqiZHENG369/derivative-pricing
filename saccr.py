@@ -80,5 +80,5 @@ def run_saccr_analysis(env, model):
         print(f"  ➤ AddOn: {r['AddOn']:.2f}")
         print(f"  ➤ Multiplier: {r['Multiplier']:.4f}")
         print(f"  ➤ Maturity Factor: {r['MaturityFactor']:.4f}")
-        print(f"  ➤ Delta: {r['Delta']:.4f} (Call ≈ +, Put ≈ -)")
+        print(f"  ➤ Delta: {r['Delta']:.4f} ")
         print(f"  ✅ Final EAD: {r['EAD']:.2f}")
