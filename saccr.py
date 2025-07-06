@@ -30,7 +30,8 @@ def compute_saccr(
 
     greeks = GreeksCalculator(model, option_type).compute_greeks(verbose=False)
 
-    delta = abs(greeks.get("delta", 1.0))
+    delta = greeks.get("delta", 1.0)
+
 
     rc = max(0, market_price - collateral)
     addon = notional * sf * mf * delta
@@ -79,5 +80,5 @@ def run_saccr_analysis(env, model):
         print(f"  ➤ AddOn: {r['AddOn']:.2f}")
         print(f"  ➤ Multiplier: {r['Multiplier']:.4f}")
         print(f"  ➤ Maturity Factor: {r['MaturityFactor']:.4f}")
-        print(f"  ➤ Delta: {r['Delta']:.4f}")
+        print(f"  ➤ Delta: {r['Delta']:.4f} (Call ≈ +, Put ≈ -)")
         print(f"  ✅ Final EAD: {r['EAD']:.2f}")
