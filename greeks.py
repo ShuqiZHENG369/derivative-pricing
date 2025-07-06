@@ -1,4 +1,3 @@
-
 from scipy.stats import norm
 from math import log, sqrt, exp
 
@@ -13,7 +12,7 @@ class GreeksCalculator:
         self.q = model.dividend_yield
         self.sigma = model.volatility
 
-    def compute_greeks(self, verbose=True):
+    def compute_greeks(self, verbose=False):
         d1 = (log(self.S / self.K) + (self.r - self.q + 0.5 * self.sigma ** 2) * self.T) / (self.sigma * sqrt(self.T))
         d2 = d1 - self.sigma * sqrt(self.T)
 
@@ -28,16 +27,12 @@ class GreeksCalculator:
         rho = self.K * self.T * exp(-self.r * self.T) * norm.cdf(d2) if self.option_type == "call" else -self.K * self.T * exp(-self.r * self.T) * norm.cdf(-d2)
 
         if verbose:
-            print("Formula: Delta = e^(-qT) N(d1)")
-            print("Delta (Δ): Sensitivity to spot price. Unit: ΔP/ΔS = {:.4f}".format(delta))
-            print("Formula: Gamma = e^(-qT) N'(d1) / (Sσ√T)")
-            print("Gamma (Γ): Second-order sensitivity to spot price. Unit: Δ²P/ΔS²")
-            print("Formula: Vega = S e^(-qT) N'(d1) √T")
-            print("Vega (ν): Sensitivity to volatility. Unit: ΔP/Δσ")
-            print("Formula: Theta = - (S N'(d1) σ e^(-qT)) / (2√T) - ...")
-            print("Theta (θ): Sensitivity to time decay. Unit: ΔP/Δt")
-            print("Formula: Rho = K T e^(-rT) N(d2)")
-            print("Rho (ρ): Sensitivity to interest rate. Unit: ΔP/Δr")
+            print(f"\n📊 Greeks for {self.option_type.capitalize()} Option")
+            print(f"  ➤ Delta  : {delta:.4f}")
+            print(f"  ➤ Gamma  : {gamma:.4f}")
+            print(f"  ➤ Vega   : {vega:.4f}")
+            print(f"  ➤ Theta  : {theta:.4f}")
+            print(f"  ➤ Rho    : {rho:.4f}")
 
         return {
             "delta": delta,
