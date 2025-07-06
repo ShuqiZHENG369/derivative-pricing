@@ -18,6 +18,30 @@ A modular option pricing and analysis engine, designed for hands-on exploration 
 
 ---
 
+---
+
+##  Counterparty Risk Analytics (New Additions)
+
+-  **Exposure Simulation**  
+  Monte Carlo engine to compute time-paths of Expected Exposure (EE), Effective Expected Positive Exposure (EEPE), and 95% Potential Future Exposure (PFE) based on simulated mark-to-market evolution.
+
+-  **CVA Engine**  
+  IMM-style CVA calculator supporting both discrete and continuous formulations. Fully customizable inputs: Loss Given Default (LGD), hazard rate, and discounting.
+
+-  **SA-CCR Calculator**  
+  Market-standard Exposure at Default (EAD) calculator using SA-CCR framework. Incorporates:
+  - Market MtM (non-model)
+  - Replacement Cost
+  - Supervisory Factors
+  - Delta (with sign preservation)
+  - Multiplier and Maturity Factor
+
+-  **XVA Adjustment Module**  
+  Integrates CVA into pricing to produce risk-adjusted fair value. Useful for comparing pre- and post-credit-adjusted option prices.
+
+---
+
+
 ## 📁 Project Structure
 
 derivative-pricing/
