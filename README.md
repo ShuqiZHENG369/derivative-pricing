@@ -20,7 +20,7 @@ A modular option pricing and analysis engine, designed for hands-on exploration 
 
 ---
 
-##  Counterparty Risk Analytics (New Additions)
+##  🔐Counterparty Risk Analytics (New Additions)
 
 -  **Exposure Simulation**  
   Monte Carlo engine to compute time-paths of Expected Exposure (EE), Effective Expected Positive Exposure (EEPE), and 95% Potential Future Exposure (PFE) based on simulated mark-to-market evolution.
