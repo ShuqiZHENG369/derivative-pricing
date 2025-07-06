@@ -93,18 +93,17 @@ $$
 
 ## 🔹 Greeks
 
+
+
 **Delta**
 
-- **Call:**
 $$
-\Delta_{\text{call}} = e^{-qT} \cdot N(d_1)
+\begin{aligned}
+\Delta_{\text{call}} &= e^{-qT} \cdot N(d_1) \\
+\Delta_{\text{put}} &= e^{-qT} \cdot \left( N(d_1) - 1 \right)
+\end{aligned}
 $$
 
-- **Put:**
-
-  $$
-  \Delta_{\text{put}} = e^{-qT} \cdot \left( N(d_1) - 1 \right)
-  $$
 
 **Gamma**
 
