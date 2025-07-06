@@ -68,3 +68,16 @@ def plot_exposure_metrics(EE, PFE, dt):
     plt.grid(True)
     plt.tight_layout()
     plt.show()
+
+def compute_cva(EE, dt, rate, lgd=0.6, hazard_rate=0.01):
+    """
+    Compute CVA from EE profile using IMM method
+    """
+    time_grid = np.arange(1, len(EE)+1) * dt
+    PD = 1 - np.exp(-hazard_rate * time_grid)
+    PD_prev = np.insert(PD[:-1], 0, 0)
+    delta_PD = PD - PD_prev
+    discount_factors = np.exp(-rate * time_grid)
+    CVA = np.sum(EE * delta_PD * discount_factors * lgd)
+    return CVA
+
