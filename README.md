@@ -71,7 +71,7 @@ ESSEC Business School (Grande École), Financial Markets Track
 This project is for educational and demonstrative use. MIT License applies unless otherwise noted.
 
 
-# 📘 Mathematical Formulas (Improved Version)
+# 📘 Mathematical Formulas 
 
 ---
 
