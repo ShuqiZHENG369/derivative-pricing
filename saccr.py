@@ -82,6 +82,9 @@ def compute_both_eads(
     put_result = compute_saccr(model, put_market_price, notional, asset_class, collateral, 'put', use_abs_delta)
     return {"call": call_result, "put": put_result}
 
+def compute_cva(ead, discount_factor, recovery_rate, default_prob):
+    return (1 - recovery_rate) * default_prob * discount_factor * ead
+
 def run_saccr_analysis(env, model, contract_size=None, collateral=None, use_abs_delta=True):
     """
     Run full SA-CCR analysis using environment and pricing model.
@@ -118,3 +121,16 @@ def run_saccr_analysis(env, model, contract_size=None, collateral=None, use_abs_
         print(f"  ➤ Maturity Factor: {r['MaturityFactor']:.4f}")
         print(f"  ➤ Original Delta (sign preserved): {r['Delta']:.4f}")
         print(f"  ✅ Final EAD: {r['EAD']:.2f}")
+        # Step 6: CVA calculation per option type
+    
+    print("\n📉 CVA Calculation:")
+
+    recovery_rate = float(input("Enter recovery rate (e.g., 0.4): ") or 0.4)
+    default_prob = float(input("Enter flat default probability (e.g., 0.01): ") or 0.01)
+    discount_factor = np.exp(-model.rate * model.maturity)
+
+    for option_type in ["call", "put"]:
+        r = results[option_type]
+        cva = compute_cva(r["EAD"], discount_factor, recovery_rate, default_prob)
+        print(f"💳 CVA for {option_type.capitalize()}: {cva:.2f}")
+
