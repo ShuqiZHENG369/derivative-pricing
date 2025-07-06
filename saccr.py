@@ -28,7 +28,8 @@ def compute_saccr(
     T = model.maturity
     mf = maturity_factor(T)
 
-    greeks = GreeksCalculator(model, option_type).compute_greeks()
+    greeks = GreeksCalculator(model, option_type).compute_greeks(verbose=False)
+
     delta = abs(greeks.get("delta", 1.0))
 
     rc = max(0, market_price - collateral)
