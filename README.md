@@ -6,12 +6,12 @@ A modular option pricing and analysis engine, designed for hands-on exploration 
 
 ## 🔍 Core Capabilities
 
-- 📈 **Black-Scholes Model** (European call/put pricing)
-- ⚙️ **Greeks Analysis**: Delta, Gamma, Vega, Theta, Rho
-- 🧮 **Implied Volatility Solver** (Brent/fsolve method)
-- 📊 **Market Environment Builder** (real-time data via `yfinance`)
-- 📉 **Volatility Analytics**: Realized vol, IV smile
-- 🧠 **Visualization Modules**:
+-  **Black-Scholes Model** (European call/put pricing)
+-  **Greeks Analysis**: Delta, Gamma, Vega, Theta, Rho
+-  **Implied Volatility Solver** (Brent/fsolve method)
+-  **Market Environment Builder** (real-time data via `yfinance`)
+-  **Volatility Analytics**: Realized vol, IV smile
+-  **Visualization Modules**:
   - Historical volatility chart (multi-period)
   - Greeks vs. parameters (strike, time, vol)
   - Model price vs. market price comparisons *(in progress)*
