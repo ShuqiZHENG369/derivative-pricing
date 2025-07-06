@@ -96,10 +96,9 @@ $$
 **Delta**
 
 - **Call:**
-
-  $$
-  \Delta_{\text{call}} = e^{-qT} \cdot N(d_1)
-  $$
+$$
+\Delta_{\text{call}} = e^{-qT} \cdot N(d_1)
+$$
 
 - **Put:**
 
