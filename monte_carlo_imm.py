@@ -18,9 +18,10 @@ def monte_carlo_exposure_paths(model, n_paths=1000, option_type='call'):
     # Simulate asset paths
     S = np.zeros((n_paths, n_steps + 1))
     S[:, 0] = S0
-    Z = np.random.standard_normal((n_paths, n_steps))  # ✅ Correct: only generate once
     for t in range(1, n_steps + 1):
-        S[:, t] = S[:, t - 1] * np.exp((r - 0.5 * sigma**2) * dt + sigma * np.sqrt(dt) * Z[:, t - 1])
+        Z = np.random.standard_normal(n_paths)  
+        S[:, t] = S[:, t - 1] * np.exp((r - 0.5 * sigma**2) * dt + sigma * np.sqrt(dt) * Z)
+
 
     # Compute option value at each step using BSM and extract positive exposure
     def option_value(s, t_step):
@@ -36,8 +37,9 @@ def monte_carlo_exposure_paths(model, n_paths=1000, option_type='call'):
     V = np.zeros_like(S)
     for t in range(n_steps + 1):
         V[:, t] = np.maximum(option_value(S[:, t], t), 0)
-
+    print(S)
     return V, dt
+
 
 def compute_exposure_metrics(V, dt, quantile=0.95):
     """
@@ -65,3 +67,4 @@ def plot_exposure_metrics(EE, PFE, dt):
     plt.grid(True)
     plt.tight_layout()
     plt.show()
+
