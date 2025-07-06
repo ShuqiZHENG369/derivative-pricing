@@ -22,10 +22,14 @@ This project is a complete interactive toolkit to analyze European options using
 ### 🔹 Black-Scholes-Merton
 
 Call price:  
-$$ C = S e^{-qT} N(d_1) - K e^{-rT} N(d_2) $$
+$$ 
+/C = S e^{-qT} N(d_1) - K e^{-rT} N(d_2)
+$$
 
 Put price:  
-$$ P = K e^{-rT} N(-d_2) - S e^{-qT} N(-d_1) $$
+$$ 
+/P = K e^{-rT} N(-d_2) - S e^{-qT} N(-d_1)
+$$
 
 Where:  
 $$
