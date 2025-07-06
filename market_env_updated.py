@@ -34,6 +34,7 @@ class MarketEnvironment:
         self.maturity = float(input("Enter maturity in years (T, default: 0.5): ") or 0.5)
         self.rate = float(input("Enter annual risk-free rate (r, default: 0.035): ") or 0.035)
         self.volatility = float(input("Enter annual volatility (σ, default: 0.2): ") or 0.2)
+    
         self.dividend_yield = float(input("Enter dividend yield (q, default: 0.0): ") or 0.0)
         self.use_custom_vol_period = input("Use custom historical period to estimate volatility? (y/n, default: n): ").lower() == 'y'
         if self.use_custom_vol_period:
@@ -73,7 +74,7 @@ class MarketEnvironment:
 
         try:
             info = yf_ticker.info
-            self.dividend_yield = info.get("dividendYield", 0.0) or 0.0
+            self.dividend_yield = (info.get("dividendYield", 0.0) or 0.0) / 100
             print(f"→ Dividend yield: {self.dividend_yield:.2%}")
         except:
             self.dividend_yield = self._prompt_or_keep_default("Dividend yield fetch", self.dividend_yield, float)
