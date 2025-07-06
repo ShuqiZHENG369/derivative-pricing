@@ -1,5 +1,5 @@
 
-# 📘 Mathematical Formulas (Improved Version)
+# 📘 Mathematical Formulas
 
 ---
 
