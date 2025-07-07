@@ -40,10 +40,10 @@ A modular option pricing and analysis engine, designed for hands-on exploration 
   Integrates CVA into pricing to produce risk-adjusted fair value. Useful for comparing pre- and post-credit-adjusted option prices.
 
 ---
-
+---
 
 ## 📁 Project Structure
-
+---
 derivative-pricing/
 ├── bsm_model.py            # Black-Scholes pricing
 ├── greeks.py               # Greeks calculator
