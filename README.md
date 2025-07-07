@@ -44,7 +44,7 @@ A modular option pricing and analysis engine, designed for hands-on exploration 
 
 ## 📁 Project Structure
 ---
-derivative-pricing/
+---derivative-pricing/
 ├── bsm_model.py            # Black-Scholes pricing
 ├── greeks.py               # Greeks calculator
 ├── implied_vol.py          # IV solver
