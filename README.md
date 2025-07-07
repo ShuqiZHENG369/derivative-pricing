@@ -45,8 +45,8 @@ A modular option pricing and analysis engine, designed for hands-on exploration 
 - `greeks.py` – Greeks (Delta, Gamma, Vega, etc.)
 - `implied_vol.py` – Implied volatility solver
 - `market_env_updated.py` – Live market data interface
-- `monte_carlo_imm.py` – EE/PFE/EPE exposure simulation
-- `saccr.py` – SA-CCR EAD computation
+- `monte_carlo_imm.py` – EE/PFE/EPE CVA exposure simulation
+- `saccr.py` – SA-CCR CVA computation
 - `visualization.py` – Plotting Greeks and exposures
 - `primary_demo.py` – Main script to run the toolkit
 
