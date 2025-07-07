@@ -39,9 +39,16 @@ A modular option pricing and analysis engine, designed for hands-on exploration 
 ---
 ---
 
-## 📁 Project Structure
 
-<pre><code>derivative-pricing/ ├── bsm_model.py # Black-Scholes pricing ├── greeks.py # Greeks calculator ├── implied_vol.py # IV solver ├── market_env_updated.py # Real-time data input ├── monte_carlo_imm.py # Path-based exposure simulation (EE/PFE/EPE) ├── saccr.py # SA-CCR calculation (EAD) ├── visualization.py # Plots: Greeks, exposure, volatility ├── primary_demo.py # Usage demo ├── __init__.py └── README.md </code></pre>
+### 📌 File Descriptions:
+- `bsm_model.py` – Black-Scholes pricing engine
+- `greeks.py` – Greeks (Delta, Gamma, Vega, etc.)
+- `implied_vol.py` – Implied volatility solver
+- `market_env_updated.py` – Live market data interface
+- `monte_carlo_imm.py` – EE/PFE/EPE exposure simulation
+- `saccr.py` – SA-CCR EAD computation
+- `visualization.py` – Plotting Greeks and exposures
+- `primary_demo.py` – Main script to run the toolkit
 
 
 ## ⚡ Example: Price a European Call
