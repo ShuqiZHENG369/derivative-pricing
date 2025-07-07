@@ -14,7 +14,7 @@ A modular option pricing and analysis engine, designed for hands-on exploration 
 -  **Visualization Modules**:
   - Historical volatility chart (multi-period)
   - Greeks vs. parameters (strike, time, vol)
-  - Model price vs. market price comparisons *(in progress)*
+  - Model price vs. market price comparisons 
 
 ---
 
