@@ -6,19 +6,16 @@ A modular option pricing and analysis engine, designed for hands-on exploration 
 
 ## 🔍 Core Capabilities
 
-derivative-pricing/
-├── bsm_model.py            # Black-Scholes pricing
-├── greeks.py               # Greeks calculator
-├── implied_vol.py          # IV solver
-├── market_env_updated.py   # Real-time data input
-├── monte_carlo_imm.py      # Path-based exposure simulation (EE/PFE/EPE)
-├── saccr.py                # SA-CCR calculation (EAD)
-├── visualization.py        # Plots: Greeks, exposure, volatility
-├── primary_demo.py         # Usage demo
-├── __init__.py
-└── README.md
+-  **Black-Scholes Model** (European call/put pricing)
+-  **Greeks Analysis**: Delta, Gamma, Vega, Theta, Rho
+-  **Implied Volatility Solver** (Brent/fsolve method)
+-  **Market Environment Builder** (real-time data via `yfinance`)
+-  **Volatility Analytics**: Realized vol, IV smile
+-  **Visualization Modules**:
+  - Historical volatility chart (multi-period)
+  - Greeks vs. parameters (strike, time, vol)
+  - Model price vs. market price comparisons 
 
----
 
 ##  🔐Counterparty Risk Analytics (New Additions)
 
@@ -44,18 +41,7 @@ derivative-pricing/
 
 ## 📁 Project Structure
 ---
-derivative-pricing/
-├── bsm_model.py            # Black-Scholes pricing
-├── greeks.py               # Greeks calculator
-├── implied_vol.py          # IV solver
-├── market_env_updated.py   # Real-time data input
-├── monte_carlo_imm.py      # Path-based exposure simulation (EE/PFE/EPE)
-├── saccr.py                # SA-CCR calculation (EAD)
-├── visualization.py        # Plots: Greeks, exposure, volatility
-├── primary_demo.py         # Usage demo
-├── __init__.py
-└── README.md
-
+<pre><code>derivative-pricing/ ├── bsm_model.py # Black-Scholes pricing ├── greeks.py # Greeks calculator ├── implied_vol.py # IV solver ├── market_env_updated.py # Real-time data input ├── monte_carlo_imm.py # Path-based exposure simulation (EE/PFE/EPE) ├── saccr.py # SA-CCR calculation (EAD) ├── visualization.py # Plots: Greeks, exposure, volatility ├── primary_demo.py # Usage demo ├── __init__.py └── README.md </code></pre>
 
 ---
 
